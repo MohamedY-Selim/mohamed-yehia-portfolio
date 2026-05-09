@@ -1,0 +1,14 @@
+<svg width="800" height="920" viewBox="0 0 800 920" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="920" rx="36" fill="#0B1224"/>
+  <rect x="42" y="42" width="716" height="836" rx="28" fill="#131C31" stroke="#2A3657" stroke-width="2"/>
+  <circle cx="400" cy="290" r="130" fill="#1D2A47"/>
+  <path d="M230 676C230 582.112 306.112 506 400 506C493.888 506 570 582.112 570 676V714H230V676Z" fill="#1D2A47"/>
+  <circle cx="400" cy="276" r="68" fill="#4B6DAE"/>
+  <path d="M296 674C296 616.562 342.562 570 400 570C457.438 570 504 616.562 504 674V714H296V674Z" fill="#4B6DAE"/>
+  <text x="400" y="804" text-anchor="middle" fill="#94A3B8" font-family="Inter, Arial, sans-serif" font-size="30">
+    Mohamed Yehia
+  </text>
+  <text x="400" y="840" text-anchor="middle" fill="#54ABFF" font-family="Inter, Arial, sans-serif" font-size="20">
+    Senior QA Automation Engineer
+  </text>
+</svg>

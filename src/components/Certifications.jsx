@@ -15,8 +15,8 @@ function Certifications({ certifications }) {
             key={cert.code}
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.35, delay: index * 0.06 }}
+            viewport={{ once: false, amount: 0.2 }}
+            transition={{ duration: 0.35, ease: "easeOut", delay: Math.min(index * 0.05, 0.2) }}
             className="glass-card p-5 text-center"
           >
             <p className="text-sm font-semibold uppercase tracking-wide text-brand-300">ISTQB</p>

@@ -15,8 +15,8 @@ function Experience({ experiences }) {
             key={item.company}
             initial={{ opacity: 0, y: 18 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.2 }}
-            transition={{ duration: 0.45, delay: index * 0.05 }}
+            viewport={{ once: false, amount: 0.2 }}
+            transition={{ duration: 0.45, ease: "easeOut", delay: Math.min(index * 0.04, 0.24) }}
             className="glass-card relative overflow-hidden p-6 transition hover:border-brand-300"
           >
             <span className="absolute left-0 top-0 h-full w-1.5 bg-gradient-to-b from-brand-400 to-brand-700" />

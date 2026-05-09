@@ -232,7 +232,8 @@ function Contact() {
         <motion.div
           initial={{ opacity: 0, x: -20 }}
           whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true, amount: 0.3 }}
+          viewport={{ once: false, amount: 0.2 }}
+          transition={{ duration: 0.45, ease: "easeOut" }}
           className="glass-card p-6"
         >
           <div className="space-y-4 text-slate-700 dark:text-slate-300">
@@ -264,7 +265,8 @@ function Contact() {
         <motion.form
           initial={{ opacity: 0, x: 20 }}
           whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true, amount: 0.3 }}
+          viewport={{ once: false, amount: 0.2 }}
+          transition={{ duration: 0.45, ease: "easeOut" }}
           onSubmit={handleSubmit}
           className="glass-card space-y-4 p-6"
           noValidate

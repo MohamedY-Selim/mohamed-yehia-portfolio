@@ -15,8 +15,8 @@ function Projects({ projects }) {
             key={project}
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.25 }}
-            transition={{ duration: 0.4, delay: index * 0.06 }}
+            viewport={{ once: false, amount: 0.2 }}
+            transition={{ duration: 0.4, ease: "easeOut", delay: Math.min(index * 0.05, 0.15) }}
             className="glass-card bg-gradient-to-b from-white to-slate-100/70 p-6 transition hover:-translate-y-1 hover:border-brand-300 dark:from-slate-900/70 dark:to-slate-900/30"
           >
             <h3 className="text-lg font-semibold text-slate-900 dark:text-white">{project}</h3>

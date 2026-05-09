@@ -5,8 +5,8 @@ function SectionHeading({ eyebrow, title, subtitle }) {
     <motion.div
       initial={{ opacity: 0, y: 16 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.4 }}
-      transition={{ duration: 0.5 }}
+      viewport={{ once: false, amount: 0.2 }}
+      transition={{ duration: 0.45, ease: "easeOut" }}
       className="mb-12"
     >
       <p className="mb-2 text-sm font-semibold uppercase tracking-[0.2em] text-brand-300">{eyebrow}</p>

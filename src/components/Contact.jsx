@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
 import emailjs from "@emailjs/browser";
-import { FiLinkedin, FiMail, FiPhone } from "react-icons/fi";
+import { FiCalendar, FiLinkedin, FiMail, FiPhone } from "react-icons/fi";
 import { FaWhatsapp } from "react-icons/fa6";
 import SectionHeading from "./SectionHeading";
 
@@ -260,6 +260,16 @@ function Contact() {
               <FaWhatsapp /> WhatsApp Chat
             </a>
           </div>
+          <a
+            href="https://calendly.com/mohamedy-selim14/new-meeting"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-6 inline-flex items-center gap-2 rounded-xl bg-brand-600 px-5 py-3 text-sm font-semibold text-white shadow-glow transition hover:-translate-y-0.5 hover:bg-brand-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-400"
+            aria-label="Schedule a call on Calendly. Opens in a new tab."
+          >
+            <FiCalendar className="shrink-0" aria-hidden="true" />
+            Schedule a Call
+          </a>
         </motion.div>
 
         <motion.form

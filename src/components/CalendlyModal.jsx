@@ -61,7 +61,7 @@ function CalendlyIframeLoader({ visible }) {
             aria-hidden="true"
           />
           <p className="text-center text-sm uppercase tracking-[0.3em] text-slate-500 dark:text-slate-300">
-            Loading Portfolio
+            Loading Calendar
           </p>
           <span className="sr-only">Loading scheduling widget</span>
         </motion.div>

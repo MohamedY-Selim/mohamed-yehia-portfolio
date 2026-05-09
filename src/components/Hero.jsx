@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { FiCalendar, FiDownload, FiLinkedin, FiMail } from "react-icons/fi";
+import { useCalendlyModal } from "../context/CalendlyModalContext";
 import HeroStats from "./HeroStats";
 
 const ease = [0.25, 0.1, 0.25, 1];
@@ -11,6 +12,8 @@ const ctaSecondary =
   "group inline-flex items-center justify-center gap-2 rounded-xl border border-slate-300/90 bg-white/75 px-5 py-3.5 text-sm font-semibold text-slate-800 backdrop-blur-sm transition duration-300 hover:z-10 hover:-translate-y-1 hover:scale-[1.02] hover:border-brand-500/50 hover:bg-white hover:text-brand-700 hover:shadow-[0_0_28px_-6px_rgba(84,171,255,0.35)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-400 active:scale-[0.98] dark:border-slate-600/80 dark:bg-slate-900/40 dark:text-slate-100 dark:hover:border-brand-400/60 dark:hover:bg-slate-800/60 dark:hover:text-white dark:hover:shadow-[0_0_28px_-6px_rgba(84,171,255,0.45)]";
 
 function Hero({ titles, heroStats }) {
+  const { openCalendly } = useCalendlyModal();
+
   return (
     <section
       id="home"
@@ -76,16 +79,10 @@ function Hero({ titles, heroStats }) {
               transition={{ duration: 0.55, delay: 0.28, ease }}
               className="mt-9 flex flex-col gap-3 sm:flex-row sm:flex-wrap"
             >
-              <a
-                href="https://calendly.com/mohamedy-selim14/new-meeting"
-                target="_blank"
-                rel="noopener noreferrer"
-                className={ctaPrimary}
-                aria-label="Schedule a call on Calendly. Opens in a new tab."
-              >
+              <button type="button" onClick={openCalendly} className={ctaPrimary}>
                 <FiCalendar className="shrink-0 transition group-hover:scale-110" aria-hidden="true" />
                 Schedule a Call
-              </a>
+              </button>
               <a href="/Mohamed Yehia Senior QA CV.pdf" className={ctaPrimary}>
                 <FiDownload className="shrink-0 transition group-hover:scale-110" aria-hidden="true" />
                 Download CV

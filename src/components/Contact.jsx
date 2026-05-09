@@ -1,9 +1,10 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
 import emailjs from "@emailjs/browser";
-import { FiCalendar, FiExternalLink, FiLinkedin, FiMail, FiPhone, FiSend } from "react-icons/fi";
+import { FiCalendar, FiLinkedin, FiMail, FiPhone, FiSend } from "react-icons/fi";
 import { FaWhatsapp } from "react-icons/fa6";
 import SectionHeading from "./SectionHeading";
+import { useCalendlyModal } from "../context/CalendlyModalContext";
 
 // Validation rules - centralized for easy adjustment
 const VALIDATION_RULES = {
@@ -30,6 +31,7 @@ const MIN_SUBMIT_TIME_MS = 3000;
 const SUBMIT_COOLDOWN_MS = 30000;
 
 function Contact() {
+  const { openCalendly } = useCalendlyModal();
   const emailJsServiceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
   const emailJsTemplateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
   const emailJsPublicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
@@ -244,17 +246,14 @@ function Contact() {
           transition={{ duration: 0.45, ease: "easeOut" }}
           className="flex flex-col gap-6"
         >
-          <a
-            href="https://calendly.com/mohamedy-selim14/new-meeting"
-            target="_blank"
-            rel="noopener noreferrer"
+          <button
+            type="button"
+            onClick={openCalendly}
             className="group relative flex w-full items-center justify-center gap-2 overflow-hidden rounded-2xl bg-brand-600 px-6 py-4 text-base font-semibold text-white shadow-glow transition duration-300 hover:-translate-y-1 hover:scale-[1.01] hover:bg-brand-500 hover:shadow-[0_0_36px_-6px_rgba(41,136,255,0.55)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-300"
-            aria-label="Schedule a call on Calendly. Opens in a new tab."
           >
             <FiCalendar className="shrink-0 transition group-hover:scale-110" aria-hidden="true" />
             Schedule a Call
-            <FiExternalLink className="h-4 w-4 shrink-0 opacity-70" aria-hidden="true" />
-          </a>
+          </button>
 
           <div className="glass-card space-y-1 p-6">
             <p className="mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-brand-600 dark:text-brand-300">

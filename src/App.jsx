@@ -5,6 +5,7 @@ import Certifications from "./components/Certifications";
 import Contact from "./components/Contact";
 import Experience from "./components/Experience";
 import Footer from "./components/Footer";
+import CalendlyModal from "./components/CalendlyModal";
 import FloatingQuickActions from "./components/FloatingQuickActions";
 import FloatingScrollTop from "./components/FloatingScrollTop";
 import Hero from "./components/Hero";
@@ -21,6 +22,7 @@ import {
   skillGroups,
   titles
 } from "./data";
+import { CalendlyModalProvider } from "./context/CalendlyModalContext";
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -53,21 +55,24 @@ function App() {
     <>
       <AnimatePresence>{loading && <LoadingScreen />}</AnimatePresence>
       {!loading && (
-        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5 }}>
-          <Navbar navLinks={navLinks} darkMode={darkMode} onToggleTheme={toggleTheme} />
-          <main>
-            <Hero titles={titles} heroStats={heroStats} />
-            <About />
-            <Experience experiences={experiences} />
-            <Skills skillGroups={skillGroups} />
-            <Certifications certifications={certifications} />
-            <Projects caseStudies={caseStudies} />
-            <Contact />
-          </main>
-          <FloatingQuickActions />
-          <FloatingScrollTop />
-          <Footer />
-        </motion.div>
+        <CalendlyModalProvider>
+          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5 }}>
+            <Navbar navLinks={navLinks} darkMode={darkMode} onToggleTheme={toggleTheme} />
+            <main>
+              <Hero titles={titles} heroStats={heroStats} />
+              <About />
+              <Experience experiences={experiences} />
+              <Skills skillGroups={skillGroups} />
+              <Certifications certifications={certifications} />
+              <Projects caseStudies={caseStudies} />
+              <Contact />
+            </main>
+            <FloatingQuickActions />
+            <FloatingScrollTop />
+            <Footer />
+            <CalendlyModal />
+          </motion.div>
+        </CalendlyModalProvider>
       )}
     </>
   );

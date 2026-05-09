@@ -12,7 +12,10 @@ const ctaSecondary =
 
 function Hero({ titles, heroStats }) {
   return (
-    <section id="home" className="relative overflow-hidden pt-32 sm:pt-36 lg:pt-40">
+    <section
+      id="home"
+      className="relative overflow-hidden scroll-mt-20 pt-[5.25rem] sm:scroll-mt-24 sm:pt-24 lg:pt-24 xl:pt-24"
+    >
       <div
         className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(ellipse_80%_50%_at_50%_-20%,rgba(41,136,255,0.22),transparent)] dark:bg-[radial-gradient(ellipse_80%_50%_at_50%_-20%,rgba(41,136,255,0.18),transparent)]"
         aria-hidden="true"
@@ -26,8 +29,8 @@ function Hero({ titles, heroStats }) {
         aria-hidden="true"
       />
 
-      <div className="section-wrapper !py-16 sm:!py-20 lg:!py-24">
-        <div className="grid items-center gap-12 lg:grid-cols-[minmax(0,1.12fr)_minmax(0,0.88fr)] lg:gap-14">
+      <div className="mx-auto max-w-6xl px-4 pb-14 pt-0 sm:px-6 sm:pb-16 lg:px-8 lg:pb-20 xl:pb-24">
+        <div className="grid items-center gap-10 sm:gap-10 lg:grid-cols-[minmax(0,1.12fr)_minmax(0,0.88fr)] lg:gap-12 xl:gap-14">
           <div className="order-2 max-w-3xl lg:order-1">
             <motion.p
               initial={{ opacity: 0, y: 16 }}

@@ -12,7 +12,18 @@ Modern, responsive personal portfolio for a Senior QA Automation Engineer and So
 
 1. `npm install`
 2. `npm run dev`
-3. `npm run build` for production build
+3. `npm run build` for production build (runs `prebuild` to generate `public/og-image.png` from `public/og-image.svg` via [sharp](https://github.com/lovell/sharp))
+
+## SEO & social previews (Open Graph / Twitter)
+
+- Meta tags in `index.html` use the production URL: `https://mohamed-yehia-portfolio.vercel.app/`
+- **LinkedIn, Facebook, and X (Twitter)** read `og:*` and `twitter:*` tags; the share image is **`/og-image.png`** (1200×630) for best compatibility.
+- **Regenerate the PNG** after editing `public/og-image.svg`:
+
+  `npm run og:image`
+
+- If you use a **custom domain**, update the **canonical** link, **`og:url`**, and all **absolute** `og:image` / `twitter:image` URLs in `index.html` to match.
+- After deploy, refresh caches: [Facebook Sharing Debugger](https://developers.facebook.com/tools/debug/), [LinkedIn Post Inspector](https://www.linkedin.com/post-inspector/), [Twitter Card Validator](https://cards-dev.twitter.com/validator) (or X equivalent).
 
 ## Contact Form (EmailJS)
 

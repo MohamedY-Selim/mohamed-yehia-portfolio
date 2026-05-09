@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
 import emailjs from "@emailjs/browser";
-import { FiCalendar, FiLinkedin, FiMail, FiPhone } from "react-icons/fi";
+import { FiCalendar, FiExternalLink, FiLinkedin, FiMail, FiPhone, FiSend } from "react-icons/fi";
 import { FaWhatsapp } from "react-icons/fa6";
 import SectionHeading from "./SectionHeading";
 
@@ -213,63 +213,86 @@ function Contact() {
 
   // Helper for input className based on validation state
   const inputClass = (fieldName) => {
-    const base = "w-full rounded-xl border bg-white/80 px-4 py-3 text-slate-800 outline-none transition dark:bg-slate-900/90 dark:text-slate-100";
+    const base =
+      "w-full rounded-xl border bg-white/90 px-4 py-3.5 text-slate-800 outline-none transition placeholder:text-slate-400 focus-visible:border-brand-500/60 focus-visible:ring-2 focus-visible:ring-brand-500/25 dark:bg-slate-900/85 dark:text-slate-100 dark:placeholder:text-slate-500";
     const hasError = touched[fieldName] && fieldErrors[fieldName];
     if (hasError) {
-      return `${base} border-rose-400 focus:border-rose-500 dark:border-rose-500`;
+      return `${base} border-rose-400 focus-visible:border-rose-500 focus-visible:ring-rose-500/25 dark:border-rose-500`;
     }
-    return `${base} border-slate-300 focus:border-brand-400 dark:border-slate-700`;
+    return `${base} border-slate-300 hover:border-slate-400/90 dark:border-slate-600 dark:hover:border-slate-500`;
   };
 
   return (
     <section id="contact" className="section-wrapper pb-28">
       <SectionHeading
         eyebrow="Contact"
-        title="Let's build quality that scales"
-        subtitle="Open to senior QA leadership, automation consulting, and strategic quality engineering opportunities."
+        title="Let's talk about your next quality hire"
+        subtitle="Senior QA automation, squad leadership, and enterprise test strategy—available for selective roles and advisory conversations."
       />
-      <div className="grid gap-8 lg:grid-cols-2">
+
+      <p className="-mt-6 mb-10 max-w-3xl text-sm font-medium text-slate-600 dark:text-slate-400 sm:text-base">
+        <span className="rounded-full border border-slate-300/80 bg-white/60 px-3 py-1 dark:border-slate-600/60 dark:bg-slate-900/50">
+          Based in Egypt · Open to remote &amp; GCC opportunities
+        </span>
+      </p>
+
+      <div className="grid gap-8 lg:grid-cols-2 lg:gap-10">
         <motion.div
           initial={{ opacity: 0, x: -20 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: false, amount: 0.2 }}
           transition={{ duration: 0.45, ease: "easeOut" }}
-          className="glass-card p-6"
+          className="flex flex-col gap-6"
         >
-          <div className="space-y-4 text-slate-700 dark:text-slate-300">
-            <a href="mailto:mohamedy.selim14@gmail.com" className="flex items-center gap-3 hover:text-brand-500 dark:hover:text-brand-300">
-              <FiMail /> mohamedy.selim14@gmail.com
-            </a>
-            <a
-              href="https://linkedin.com/in/mohamed-yehia-selim"
-              target="_blank"
-              rel="noreferrer"
-              className="flex items-center gap-3 hover:text-brand-500 dark:hover:text-brand-300"
-            >
-              <FiLinkedin /> linkedin.com/in/mohamed-yehia-selim
-            </a>
-            <a href="tel:+201127624482" className="flex items-center gap-3 hover:text-brand-500 dark:hover:text-brand-300">
-              <FiPhone /> +20 112 762 4482
-            </a>
-            <a
-              href="https://wa.me/201127624482"
-              target="_blank"
-              rel="noreferrer"
-              className="flex items-center gap-3 hover:text-brand-500 dark:hover:text-brand-300"
-            >
-              <FaWhatsapp /> WhatsApp Chat
-            </a>
-          </div>
           <a
             href="https://calendly.com/mohamedy-selim14/new-meeting"
             target="_blank"
             rel="noopener noreferrer"
-            className="mt-6 inline-flex items-center gap-2 rounded-xl bg-brand-600 px-5 py-3 text-sm font-semibold text-white shadow-glow transition hover:-translate-y-0.5 hover:bg-brand-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-400"
+            className="group relative flex w-full items-center justify-center gap-2 overflow-hidden rounded-2xl bg-brand-600 px-6 py-4 text-base font-semibold text-white shadow-glow transition duration-300 hover:-translate-y-1 hover:scale-[1.01] hover:bg-brand-500 hover:shadow-[0_0_36px_-6px_rgba(41,136,255,0.55)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-300"
             aria-label="Schedule a call on Calendly. Opens in a new tab."
           >
-            <FiCalendar className="shrink-0" aria-hidden="true" />
+            <FiCalendar className="shrink-0 transition group-hover:scale-110" aria-hidden="true" />
             Schedule a Call
+            <FiExternalLink className="h-4 w-4 shrink-0 opacity-70" aria-hidden="true" />
           </a>
+
+          <div className="glass-card space-y-1 p-6">
+            <p className="mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-brand-600 dark:text-brand-300">
+              Direct channels
+            </p>
+            <a
+              href="mailto:mohamedy.selim14@gmail.com"
+              className="flex items-center gap-3 rounded-lg py-2 text-slate-700 transition hover:bg-slate-100/80 hover:text-brand-600 dark:text-slate-300 dark:hover:bg-slate-800/50 dark:hover:text-brand-300"
+            >
+              <FiMail className="shrink-0" aria-hidden="true" />
+              mohamedy.selim14@gmail.com
+            </a>
+            <a
+              href="https://linkedin.com/in/mohamed-yehia-selim"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-3 rounded-lg py-2 text-slate-700 transition hover:bg-slate-100/80 hover:text-brand-600 dark:text-slate-300 dark:hover:bg-slate-800/50 dark:hover:text-brand-300"
+            >
+              <FiLinkedin className="shrink-0" aria-hidden="true" />
+              linkedin.com/in/mohamed-yehia-selim
+            </a>
+            <a
+              href="tel:+201127624482"
+              className="flex items-center gap-3 rounded-lg py-2 text-slate-700 transition hover:bg-slate-100/80 hover:text-brand-600 dark:text-slate-300 dark:hover:bg-slate-800/50 dark:hover:text-brand-300"
+            >
+              <FiPhone className="shrink-0" aria-hidden="true" />
+              +20 112 762 4482
+            </a>
+            <a
+              href="https://wa.me/201127624482"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-3 rounded-lg py-2 text-slate-700 transition hover:bg-slate-100/80 hover:text-brand-600 dark:text-slate-300 dark:hover:bg-slate-800/50 dark:hover:text-brand-300"
+            >
+              <FaWhatsapp className="shrink-0" aria-hidden="true" />
+              WhatsApp
+            </a>
+          </div>
         </motion.div>
 
         <motion.form
@@ -278,9 +301,15 @@ function Contact() {
           viewport={{ once: false, amount: 0.2 }}
           transition={{ duration: 0.45, ease: "easeOut" }}
           onSubmit={handleSubmit}
-          className="glass-card space-y-4 p-6"
+          className="glass-card space-y-5 border-slate-700/50 p-6 sm:p-7"
           noValidate
         >
+          <div>
+            <h3 className="text-lg font-semibold text-slate-900 dark:text-white">Send a message</h3>
+            <p className="mt-1 text-sm text-slate-600 dark:text-slate-400">
+              Brief context on role, stack, and timeline—I typically reply within one business day.
+            </p>
+          </div>
           {/* Honeypot field - hidden from users, traps bots */}
           <input
             type="text"
@@ -359,9 +388,16 @@ function Contact() {
           <button
             type="submit"
             disabled={submitState.loading}
-            className="w-full rounded-xl bg-brand-600 px-5 py-3 font-semibold text-white transition hover:bg-brand-500 disabled:cursor-not-allowed disabled:opacity-60"
+            className="group flex w-full items-center justify-center gap-2 rounded-xl bg-brand-600 px-5 py-3.5 font-semibold text-white shadow-glow transition hover:-translate-y-0.5 hover:bg-brand-500 hover:shadow-[0_0_28px_-6px_rgba(41,136,255,0.45)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-400 disabled:translate-y-0 disabled:cursor-not-allowed disabled:opacity-60 disabled:shadow-none"
           >
-            {submitState.loading ? "Sending..." : "Send Message"}
+            {submitState.loading ? (
+              "Sending..."
+            ) : (
+              <>
+                <FiSend className="transition group-hover:translate-x-0.5" aria-hidden="true" />
+                Send Message
+              </>
+            )}
           </button>
         </motion.form>
       </div>

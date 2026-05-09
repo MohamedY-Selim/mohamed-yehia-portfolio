@@ -11,7 +11,15 @@ import LoadingScreen from "./components/LoadingScreen";
 import Navbar from "./components/Navbar";
 import Projects from "./components/Projects";
 import Skills from "./components/Skills";
-import { certifications, experiences, navLinks, projects, skillCategories, titles, tools } from "./data";
+import {
+  caseStudies,
+  certifications,
+  experiences,
+  heroStats,
+  navLinks,
+  skillGroups,
+  titles
+} from "./data";
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -47,12 +55,12 @@ function App() {
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5 }}>
           <Navbar navLinks={navLinks} darkMode={darkMode} onToggleTheme={toggleTheme} />
           <main>
-            <Hero titles={titles} />
+            <Hero titles={titles} heroStats={heroStats} />
             <About />
             <Experience experiences={experiences} />
-            <Skills skillCategories={skillCategories} tools={tools} />
+            <Skills skillGroups={skillGroups} />
             <Certifications certifications={certifications} />
-            <Projects projects={projects} />
+            <Projects caseStudies={caseStudies} />
             <Contact />
           </main>
           <FloatingWhatsApp />

@@ -6,21 +6,21 @@ function About() {
     <section id="about" className="section-wrapper">
       <SectionHeading
         eyebrow="About"
-        title="Quality strategy built for enterprise scale"
-        subtitle="Professional QA leader focused on quality engineering, automation impact, and team growth."
+        title="Executive summary"
+        subtitle="A concise view of how I operate as a senior quality leader—technical enough to build, senior enough to own the narrative."
       />
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: false, amount: 0.2 }}
         transition={{ duration: 0.5, ease: "easeOut" }}
-        className="glass-card p-8"
+        className="glass-card border-slate-700/50 p-7 sm:p-8"
       >
-        <p className="leading-relaxed text-slate-700 dark:text-slate-300">
-          I bring 6+ years of experience spanning manual, automation, API, performance, mobile, database, and security
-          testing, with hands-on coverage in AI-assisted testing and modern delivery practices. I thrive in Agile and
-          CI/CD environments—defining QA/QC strategy and gap analysis, mentoring teams, and driving measurable quality
-          outcomes for enterprise-scale systems where reliability, speed, and stakeholder trust all matter.
+        <p className="max-w-3xl text-base leading-[1.75] text-slate-600 dark:text-slate-300 sm:text-[1.05rem]">
+          Six-plus years shipping quality for fintech, retail, logistics, and national-scale programs. I lead squads,
+          define QA strategy, and deliver automation that shortens feedback loops—without sacrificing governance. My
+          default is evidence stakeholders trust: traceable coverage, API and performance discipline, and CI/CD-ready
+          assets that hold up in enterprise reviews.
         </p>
       </motion.div>
     </section>

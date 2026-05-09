@@ -1,42 +1,48 @@
 import { motion } from "framer-motion";
 import SectionHeading from "./SectionHeading";
 
-function Skills({ skillCategories, tools }) {
+function Skills({ skillGroups }) {
   return (
     <section id="skills" className="section-wrapper">
       <SectionHeading
         eyebrow="Skills"
-        title="Testing depth, automation stack, and leadership"
-        subtitle="From hands-on execution to strategy—covering breadth across quality domains, toolchain, and enterprise delivery."
+        title="Depth you can audit in an interview"
+        subtitle="Grouped for clarity—automation and API execution through delivery tooling, languages, and leadership."
       />
 
-      <div className="mb-8 grid gap-4 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4">
-        {skillCategories.map((skill, index) => (
+      <div className="space-y-8">
+        {skillGroups.map((block, blockIndex) => (
           <motion.div
-            key={skill}
-            initial={{ opacity: 0, y: 16 }}
+            key={block.group}
+            initial={{ opacity: 0, y: 18 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: false, amount: 0.2 }}
-            transition={{ duration: 0.35, ease: "easeOut", delay: Math.min(index * 0.04, 0.2) }}
-            className="glass-card bg-gradient-to-b from-white to-slate-100/80 p-5 text-center font-semibold text-slate-800 transition hover:-translate-y-1 hover:shadow-glow dark:from-slate-900/80 dark:to-slate-900/35 dark:text-slate-100"
+            transition={{ duration: 0.45, ease: "easeOut", delay: Math.min(blockIndex * 0.05, 0.12) }}
+            className="rounded-2xl border border-slate-300/70 bg-white/60 p-5 backdrop-blur-md dark:border-slate-700/45 dark:bg-slate-900/40 sm:p-6"
           >
-            {skill}
+            <h3 className="mb-4 text-xs font-bold uppercase tracking-[0.22em] text-brand-600 dark:text-brand-300">
+              {block.group}
+            </h3>
+            <div className="flex flex-wrap gap-2 sm:gap-2.5">
+              {block.items.map((chip, chipIndex) => (
+                <motion.span
+                  key={chip}
+                  initial={{ opacity: 0, scale: 0.96 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: false, amount: 0.2 }}
+                  transition={{
+                    duration: 0.22,
+                    ease: "easeOut",
+                    delay: Math.min(chipIndex * 0.02, 0.12)
+                  }}
+                  whileHover={{ scale: 1.03, y: -1 }}
+                  className="rounded-full border border-slate-300/90 bg-white/80 px-3 py-1.5 text-xs font-medium text-slate-700 shadow-sm transition-colors hover:border-brand-500/50 hover:text-brand-700 dark:border-slate-600/50 dark:bg-slate-950/50 dark:text-slate-200 dark:hover:border-brand-400/45 dark:hover:text-white sm:px-3.5 sm:py-2 sm:text-sm"
+                >
+                  {chip}
+                </motion.span>
+              ))}
+            </div>
           </motion.div>
-        ))}
-      </div>
-
-      <div className="flex flex-wrap gap-3">
-        {tools.map((tool, index) => (
-          <motion.span
-            key={tool}
-            initial={{ opacity: 0, scale: 0.95 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: false, amount: 0.2 }}
-            transition={{ duration: 0.22, ease: "easeOut", delay: Math.min(index * 0.02, 0.18) }}
-            className="rounded-full border border-slate-300 bg-white/80 px-4 py-2 text-sm text-slate-700 transition hover:border-brand-500 hover:text-brand-600 dark:border-slate-700 dark:bg-slate-900/70 dark:text-slate-200 dark:hover:border-brand-300 dark:hover:text-brand-300"
-          >
-            {tool}
-          </motion.span>
         ))}
       </div>
     </section>

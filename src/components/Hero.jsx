@@ -1,65 +1,136 @@
 import { motion } from "framer-motion";
-import { FiDownload, FiLinkedin, FiMail } from "react-icons/fi";
+import { FiCalendar, FiDownload, FiLinkedin, FiMail } from "react-icons/fi";
+import HeroStats from "./HeroStats";
 
-function Hero({ titles }) {
+const ease = [0.25, 0.1, 0.25, 1];
+
+const ctaPrimary =
+  "group relative inline-flex items-center justify-center gap-2 overflow-hidden rounded-xl bg-brand-600 px-5 py-3.5 text-sm font-semibold text-white shadow-glow transition duration-300 hover:z-10 hover:-translate-y-1 hover:scale-[1.02] hover:bg-brand-500 hover:shadow-[0_0_32px_-4px_rgba(41,136,255,0.55)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-400 active:scale-[0.98]";
+
+const ctaSecondary =
+  "group inline-flex items-center justify-center gap-2 rounded-xl border border-slate-300/90 bg-white/75 px-5 py-3.5 text-sm font-semibold text-slate-800 backdrop-blur-sm transition duration-300 hover:z-10 hover:-translate-y-1 hover:scale-[1.02] hover:border-brand-500/50 hover:bg-white hover:text-brand-700 hover:shadow-[0_0_28px_-6px_rgba(84,171,255,0.35)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-400 active:scale-[0.98] dark:border-slate-600/80 dark:bg-slate-900/40 dark:text-slate-100 dark:hover:border-brand-400/60 dark:hover:bg-slate-800/60 dark:hover:text-white dark:hover:shadow-[0_0_28px_-6px_rgba(84,171,255,0.45)]";
+
+function Hero({ titles, heroStats }) {
   return (
-    <section id="home" className="section-wrapper pt-36">
-      <div className="grid items-center gap-12 lg:grid-cols-[1.15fr_0.85fr]">
-        <motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
-          <p className="mb-3 text-xs uppercase tracking-[0.24em] text-brand-300">
-            Senior QA Automation / SDET Portfolio
-          </p>
-          <h1 className="text-4xl font-extrabold leading-tight text-slate-900 dark:text-white sm:text-5xl lg:text-6xl">Mohamed Yehia</h1>
-          <ul className="mt-6 space-y-2 text-slate-700 dark:text-slate-300">
-            {titles.map((title) => (
-              <li key={title} className="text-base sm:text-lg">
-                {title}
-              </li>
-            ))}
-          </ul>
-          <p className="mt-6 max-w-2xl text-slate-700 dark:text-slate-300">
-            Building reliable, scalable, and high-quality software through automation, QA strategy, and process
-            improvement.
-          </p>
+    <section id="home" className="relative overflow-hidden pt-32 sm:pt-36 lg:pt-40">
+      <div
+        className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(ellipse_80%_50%_at_50%_-20%,rgba(41,136,255,0.22),transparent)] dark:bg-[radial-gradient(ellipse_80%_50%_at_50%_-20%,rgba(41,136,255,0.18),transparent)]"
+        aria-hidden="true"
+      />
+      <div
+        className="pointer-events-none absolute left-1/4 top-1/3 -z-10 h-64 w-64 rounded-full bg-brand-500/10 blur-3xl dark:bg-brand-400/10"
+        aria-hidden="true"
+      />
+      <div
+        className="pointer-events-none absolute bottom-0 right-0 -z-10 h-80 w-80 rounded-full bg-brand-600/5 blur-3xl"
+        aria-hidden="true"
+      />
 
-          <div className="mt-8 flex flex-wrap gap-3">
-            <a
-              href="/Mohamed Yehia Senior QA CV.pdf"
-              className="inline-flex items-center gap-2 rounded-xl bg-brand-600 px-5 py-3 text-sm font-semibold text-white shadow-glow transition hover:-translate-y-0.5 hover:bg-brand-500"
+      <div className="section-wrapper !py-16 sm:!py-20 lg:!py-24">
+        <div className="grid items-center gap-12 lg:grid-cols-[minmax(0,1.12fr)_minmax(0,0.88fr)] lg:gap-14">
+          <div className="order-2 max-w-3xl lg:order-1">
+            <motion.p
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.55, ease }}
+              className="mb-4 text-xs font-semibold uppercase tracking-[0.28em] text-brand-300"
             >
-              <FiDownload /> Download CV
-            </a>
-            <a
-              href="https://linkedin.com/in/mohamed-yehia-selim"
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex items-center gap-2 rounded-xl border border-slate-300 bg-white/70 px-5 py-3 text-sm font-semibold text-slate-700 transition hover:-translate-y-0.5 hover:border-brand-500 hover:text-brand-600 dark:border-slate-700 dark:bg-transparent dark:text-slate-200 dark:hover:border-brand-300 dark:hover:text-brand-300"
+              Senior QA Automation / SDET
+            </motion.p>
+            <motion.h1
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.05, ease }}
+              className="text-4xl font-extrabold leading-[1.08] tracking-tight text-slate-900 dark:text-white sm:text-5xl lg:text-6xl xl:text-[3.35rem]"
             >
-              <FiLinkedin /> LinkedIn Profile
-            </a>
-            <a
-              href="#contact"
-              className="inline-flex items-center gap-2 rounded-xl border border-slate-300 bg-white/70 px-5 py-3 text-sm font-semibold text-slate-700 transition hover:-translate-y-0.5 hover:border-brand-500 hover:text-brand-600 dark:border-slate-700 dark:bg-transparent dark:text-slate-200 dark:hover:border-brand-300 dark:hover:text-brand-300"
+              Mohamed Yehia
+            </motion.h1>
+            <motion.ul
+              initial={{ opacity: 0, y: 18 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.55, delay: 0.12, ease }}
+              className="mt-7 space-y-2.5 border-l-2 border-brand-500/40 pl-5 text-slate-600 dark:text-slate-300"
             >
-              <FiMail /> Contact Me
-            </a>
-          </div>
-        </motion.div>
+              {titles.map((title) => (
+                <li key={title} className="text-[0.95rem] leading-snug sm:text-base sm:leading-relaxed">
+                  {title}
+                </li>
+              ))}
+            </motion.ul>
+            <motion.p
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.55, delay: 0.2, ease }}
+              className="mt-8 max-w-2xl text-base leading-relaxed text-slate-600 dark:text-slate-400 sm:text-lg"
+            >
+              I own quality outcomes for enterprise programs—pairing automation depth with QA leadership, CI/CD
+              discipline, and stakeholder-ready evidence from strategy through release.
+            </motion.p>
 
-        <motion.div
-          initial={{ opacity: 0, scale: 0.95 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ delay: 0.2, duration: 0.7 }}
-          className="mx-auto w-full max-w-sm"
-        >
-          <div className="glass-card overflow-hidden p-2 shadow-glow">
-            <img
-              src="/mohamed-photo.jpg"
-              alt="Mohamed Yehia portrait"
-              className="h-[28rem] w-full rounded-xl object-cover object-center"
-            />
+            <motion.div
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.55, delay: 0.28, ease }}
+              className="mt-9 flex flex-col gap-3 sm:flex-row sm:flex-wrap"
+            >
+              <a
+                href="https://calendly.com/mohamedy-selim14/new-meeting"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={ctaPrimary}
+                aria-label="Schedule a call on Calendly. Opens in a new tab."
+              >
+                <FiCalendar className="shrink-0 transition group-hover:scale-110" aria-hidden="true" />
+                Schedule a Call
+              </a>
+              <a href="/Mohamed Yehia Senior QA CV.pdf" className={ctaPrimary}>
+                <FiDownload className="shrink-0 transition group-hover:scale-110" aria-hidden="true" />
+                Download CV
+              </a>
+              <a
+                href="https://linkedin.com/in/mohamed-yehia-selim"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={ctaSecondary}
+                aria-label="View LinkedIn profile. Opens in a new tab."
+              >
+                <FiLinkedin className="shrink-0 transition group-hover:scale-110" aria-hidden="true" />
+                View LinkedIn
+              </a>
+              <a href="#contact" className={ctaSecondary}>
+                <FiMail className="shrink-0 transition group-hover:scale-110" aria-hidden="true" />
+                Contact Me
+              </a>
+            </motion.div>
+
+            <HeroStats stats={heroStats} />
           </div>
-        </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, scale: 0.94, y: 16 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            transition={{ duration: 0.75, delay: 0.18, ease }}
+            className="order-1 mx-auto w-full max-w-[20rem] sm:max-w-sm lg:order-2 lg:max-w-none"
+          >
+            <div className="relative">
+              <div
+                className="absolute -inset-1 rounded-[1.35rem] bg-gradient-to-br from-brand-500/35 via-brand-600/10 to-transparent opacity-80 blur-md dark:opacity-100"
+                aria-hidden="true"
+              />
+              <div className="relative overflow-hidden rounded-2xl border border-slate-700/60 bg-slate-900/80 p-1.5 shadow-glow dark:border-slate-600/50">
+                <img
+                  src="/mohamed-photo.jpg"
+                  alt="Mohamed Yehia portrait"
+                  className="aspect-[4/5] w-full rounded-xl object-cover object-center sm:h-[min(32rem,70vh)] sm:aspect-auto lg:h-[min(36rem,78vh)]"
+                  width={480}
+                  height={600}
+                  loading="eager"
+                  decoding="async"
+                />
+              </div>
+            </div>
+          </motion.div>
+        </div>
       </div>
     </section>
   );

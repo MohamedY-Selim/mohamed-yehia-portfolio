@@ -5,7 +5,8 @@ import Certifications from "./components/Certifications";
 import Contact from "./components/Contact";
 import Experience from "./components/Experience";
 import Footer from "./components/Footer";
-import FloatingWhatsApp from "./components/FloatingWhatsApp";
+import FloatingQuickActions from "./components/FloatingQuickActions";
+import FloatingScrollTop from "./components/FloatingScrollTop";
 import Hero from "./components/Hero";
 import LoadingScreen from "./components/LoadingScreen";
 import Navbar from "./components/Navbar";
@@ -63,7 +64,8 @@ function App() {
             <Projects caseStudies={caseStudies} />
             <Contact />
           </main>
-          <FloatingWhatsApp />
+          <FloatingQuickActions />
+          <FloatingScrollTop />
           <Footer />
         </motion.div>
       )}

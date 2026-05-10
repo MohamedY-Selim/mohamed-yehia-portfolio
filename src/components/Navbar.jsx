@@ -1,46 +1,94 @@
 import { AnimatePresence, motion } from "framer-motion";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { FiMenu, FiMoon, FiSun, FiX } from "react-icons/fi";
+
+/** Pixels below the sticky header; tune with scroll-margin on sections */
+const ACTIVATION_GAP_PX = 12;
+
+/** Ignore scrollspy while smooth-scroll animates after a nav click (avoids flashing intermediate sections) */
+const SPY_FREEZE_MS = 560;
 
 function Navbar({ navLinks, darkMode, onToggleTheme }) {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [activeId, setActiveId] = useState("home");
+  const headerRef = useRef(null);
+  const rafRef = useRef(0);
+  const spyFrozenUntilRef = useRef(0);
+  const navClickGenRef = useRef(0);
 
   useEffect(() => {
-    const onScroll = () => {
-      const y = window.scrollY;
-      setScrolled(y > 12);
-      if (y < 96) setActiveId("home");
+    return () => {
+      navClickGenRef.current += 1;
     };
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  useEffect(() => {
-    const sectionIds = navLinks.map((l) => l.id);
-    const elements = sectionIds
-      .map((id) => ({ id, el: document.getElementById(id) }))
-      .filter((x) => x.el);
+  const computeActiveId = useCallback(() => {
+    if (!navLinks.length) return "home";
 
-    if (elements.length === 0) return undefined;
+    const header = headerRef.current;
+    const headerHeight = header?.offsetHeight ?? 72;
+    const activationLine = window.scrollY + headerHeight + ACTIVATION_GAP_PX;
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const visible = entries
-          .filter((e) => e.isIntersecting)
-          .sort((a, b) => (b.intersectionRatio ?? 0) - (a.intersectionRatio ?? 0));
-        if (visible[0]?.target?.id) {
-          setActiveId(visible[0].target.id);
-        }
-      },
-      { root: null, rootMargin: "-42% 0px -42% 0px", threshold: [0, 0.12, 0.25, 0.5] }
-    );
-
-    elements.forEach(({ el }) => observer.observe(el));
-    return () => observer.disconnect();
+    let current = navLinks[0].id;
+    for (const { id } of navLinks) {
+      const el = document.getElementById(id);
+      if (!el) continue;
+      const top = el.getBoundingClientRect().top + window.scrollY;
+      if (top <= activationLine) current = id;
+    }
+    return current;
   }, [navLinks]);
+
+  useEffect(() => {
+    const flush = () => {
+      rafRef.current = 0;
+      setScrolled(window.scrollY > 12);
+      if (performance.now() < spyFrozenUntilRef.current) return;
+      const next = computeActiveId();
+      setActiveId((prev) => (prev === next ? prev : next));
+    };
+
+    const schedule = () => {
+      if (rafRef.current) return;
+      rafRef.current = requestAnimationFrame(flush);
+    };
+
+    flush();
+
+    window.addEventListener("scroll", schedule, { passive: true });
+    window.addEventListener("resize", schedule, { passive: true });
+    window.addEventListener("hashchange", schedule, { passive: true });
+
+    const header = headerRef.current;
+    let resizeObserver;
+    if (header && typeof ResizeObserver !== "undefined") {
+      resizeObserver = new ResizeObserver(schedule);
+      resizeObserver.observe(header);
+    }
+
+    return () => {
+      window.removeEventListener("scroll", schedule);
+      window.removeEventListener("resize", schedule);
+      window.removeEventListener("hashchange", schedule);
+      if (rafRef.current) cancelAnimationFrame(rafRef.current);
+      resizeObserver?.disconnect();
+    };
+  }, [computeActiveId]);
+
+  const onNavActivate = useCallback(
+    (id) => {
+      const gen = ++navClickGenRef.current;
+      setActiveId(id);
+      spyFrozenUntilRef.current = performance.now() + SPY_FREEZE_MS;
+      window.setTimeout(() => {
+        if (navClickGenRef.current !== gen) return;
+        spyFrozenUntilRef.current = 0;
+        setActiveId(computeActiveId());
+      }, SPY_FREEZE_MS);
+    },
+    [computeActiveId]
+  );
 
   const headerClass = scrolled
     ? "border-slate-300/80 bg-white/85 shadow-sm shadow-slate-900/5 dark:border-slate-800/80 dark:bg-slate-950/90 dark:shadow-black/20"
@@ -48,10 +96,15 @@ function Navbar({ navLinks, darkMode, onToggleTheme }) {
 
   return (
     <header
+      ref={headerRef}
       className={`fixed left-0 right-0 top-0 z-50 border-b backdrop-blur-xl transition-[background-color,box-shadow,border-color] duration-300 ${headerClass}`}
     >
       <nav className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3.5 max-[480px]:px-3 max-[480px]:py-3 sm:px-6 sm:py-4 lg:px-8">
-        <a href="#home" className="text-sm font-semibold uppercase tracking-[0.2em] text-brand-300">
+        <a
+          href="#home"
+          className="text-sm font-semibold uppercase tracking-[0.2em] text-brand-300"
+          onClick={() => onNavActivate("home")}
+        >
           Mohamed Yehia
         </a>
 
@@ -62,6 +115,7 @@ function Navbar({ navLinks, darkMode, onToggleTheme }) {
               <a
                 key={link.id}
                 href={`#${link.id}`}
+                onClick={() => onNavActivate(link.id)}
                 className={`relative rounded-lg px-3 py-2 text-sm font-medium transition-colors ${
                   active
                     ? "text-brand-600 dark:text-brand-300"
@@ -119,7 +173,10 @@ function Navbar({ navLinks, darkMode, onToggleTheme }) {
                     initial={{ opacity: 0, x: -8 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: index * 0.04, duration: 0.22 }}
-                    onClick={() => setOpen(false)}
+                    onClick={() => {
+                      onNavActivate(link.id);
+                      setOpen(false);
+                    }}
                     className={`rounded-lg px-3 py-2.5 text-sm font-medium max-[480px]:px-2.5 max-[480px]:py-2.5 ${
                       active
                         ? "bg-brand-500/10 text-brand-600 dark:text-brand-300"

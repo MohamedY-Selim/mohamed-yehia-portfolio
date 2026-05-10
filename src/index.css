@@ -33,7 +33,7 @@ body {
 
 @layer components {
   .section-wrapper {
-    @apply mx-auto max-w-6xl px-4 py-20 max-[480px]:px-3 max-[480px]:py-16 sm:px-6 sm:py-24 lg:px-8 lg:py-28;
+    @apply mx-auto max-w-6xl scroll-mt-20 px-4 py-20 max-[480px]:px-3 max-[480px]:py-16 sm:scroll-mt-24 sm:px-6 sm:py-24 lg:px-8 lg:py-28;
   }
 
   .glass-card {

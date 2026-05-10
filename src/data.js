@@ -19,7 +19,7 @@ export const titles = [
 export const heroStats = [
   { value: "6+", label: "Years Experience" },
   { value: "7x", label: "ISTQB Certified" },
-  { value: "30+", label: "Projects Delivered" },
+  { value: "50+", label: "Projects Delivered" },
   { value: "Fintech · Retail · Enterprise", label: "Domain Depth", wide: true }
 ];
 

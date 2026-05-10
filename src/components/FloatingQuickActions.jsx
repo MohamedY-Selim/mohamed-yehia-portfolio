@@ -6,14 +6,14 @@ const MAILTO = "mailto:mohamedy.selim14@gmail.com";
 const WHATSAPP_URL = "https://wa.me/201127624482";
 
 const btn =
-  "inline-flex h-14 w-14 items-center justify-center rounded-full text-white shadow-lg transition hover:scale-105 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2";
+  "inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-full text-white shadow-lg transition hover:scale-105 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 sm:h-14 sm:w-14";
 
 function FloatingQuickActions() {
   const { openCalendly } = useCalendlyModal();
 
   return (
     <div
-      className="fixed bottom-6 right-6 z-[70] flex max-w-[83vw] flex-col-reverse gap-3 sm:bottom-8 sm:right-8 sm:max-w-none"
+      className="fixed bottom-[calc(1rem+env(safe-area-inset-bottom,0px))] right-[calc(0.75rem+env(safe-area-inset-right,0px))] z-[70] flex max-w-[calc(100vw-1.5rem)] flex-col-reverse gap-2 max-[480px]:bottom-[calc(0.75rem+env(safe-area-inset-bottom,0px))] max-[480px]:right-3 max-[480px]:gap-1.5 sm:bottom-8 sm:right-8 sm:max-w-none sm:gap-3"
       role="navigation"
       aria-label="Quick contact actions"
     >

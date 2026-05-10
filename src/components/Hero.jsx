@@ -17,7 +17,7 @@ function Hero({ titles, heroStats }) {
   return (
     <section
       id="home"
-      className="relative overflow-hidden scroll-mt-20 pt-[5.25rem] sm:scroll-mt-24 sm:pt-24 lg:pt-24 xl:pt-24"
+      className="relative overflow-x-clip overflow-y-visible scroll-mt-20 pt-[4.75rem] max-[480px]:scroll-mt-[4.5rem] max-[480px]:pt-[4.5rem] sm:scroll-mt-24 sm:pt-24 lg:pt-24 xl:pt-24"
     >
       <div
         className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(ellipse_80%_50%_at_50%_-20%,rgba(41,136,255,0.22),transparent)] dark:bg-[radial-gradient(ellipse_80%_50%_at_50%_-20%,rgba(41,136,255,0.18),transparent)]"
@@ -32,9 +32,9 @@ function Hero({ titles, heroStats }) {
         aria-hidden="true"
       />
 
-      <div className="mx-auto max-w-6xl px-4 pb-14 pt-0 sm:px-6 sm:pb-16 lg:px-8 lg:pb-20 xl:pb-24">
-        <div className="grid items-center gap-10 sm:gap-10 lg:grid-cols-[minmax(0,1.12fr)_minmax(0,0.88fr)] lg:gap-12 xl:gap-14">
-          <div className="order-2 max-w-3xl lg:order-1">
+      <div className="mx-auto max-w-6xl px-3 pb-12 pt-0 max-[480px]:px-3 sm:px-6 sm:pb-16 lg:px-8 lg:pb-20 xl:pb-24">
+        <div className="grid min-w-0 items-center gap-8 max-[480px]:gap-7 sm:gap-10 lg:grid-cols-[minmax(0,1.12fr)_minmax(0,0.88fr)] lg:gap-12 xl:gap-14">
+          <div className="order-2 min-w-0 max-w-3xl lg:order-1">
             <motion.p
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
@@ -47,7 +47,7 @@ function Hero({ titles, heroStats }) {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.05, ease }}
-              className="text-4xl font-extrabold leading-[1.08] tracking-tight text-slate-900 dark:text-white sm:text-5xl lg:text-6xl xl:text-[3.35rem]"
+              className="max-[480px]:text-[clamp(1.85rem,6.5vw,2.25rem)] text-4xl font-extrabold leading-[1.08] tracking-tight text-slate-900 dark:text-white sm:text-5xl lg:text-6xl xl:text-[3.35rem]"
             >
               Mohamed Yehia
             </motion.h1>
@@ -110,7 +110,7 @@ function Hero({ titles, heroStats }) {
             initial={{ opacity: 0, scale: 0.94, y: 16 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             transition={{ duration: 0.75, delay: 0.18, ease }}
-            className="order-1 mx-auto w-full max-w-[20rem] sm:max-w-sm lg:order-2 lg:max-w-none"
+            className="order-1 mx-auto w-full min-w-0 max-w-[18.5rem] max-[480px]:max-w-[min(100%,17.5rem)] sm:max-w-sm lg:order-2 lg:max-w-none"
           >
             <div className="relative">
               <div

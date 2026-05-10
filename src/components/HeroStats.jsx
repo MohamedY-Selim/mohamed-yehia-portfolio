@@ -23,14 +23,14 @@ function HeroStats({ stats }) {
       variants={container}
       initial="hidden"
       animate="show"
-      className="mt-8 grid grid-cols-2 gap-3 sm:mt-10 sm:gap-4 lg:mt-10 lg:grid-cols-4"
+      className="mt-8 grid min-w-0 grid-cols-2 gap-2.5 sm:mt-10 sm:gap-4 lg:mt-10 lg:grid-cols-4"
       aria-label="Career highlights"
     >
       {stats.map((stat) => (
         <motion.div
           key={stat.label}
           variants={item}
-          className={`relative overflow-hidden rounded-2xl border px-4 py-4 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.06)] backdrop-blur-md border-slate-300/70 bg-white/75 dark:border-slate-700/50 dark:bg-slate-900/55 ${
+          className={`relative min-w-0 overflow-hidden rounded-2xl border px-3 py-3.5 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.06)] backdrop-blur-md border-slate-300/70 bg-white/75 dark:border-slate-700/50 dark:bg-slate-900/55 sm:px-4 sm:py-4 ${
             stat.wide ? "col-span-2 lg:col-span-1" : ""
           }`}
         >

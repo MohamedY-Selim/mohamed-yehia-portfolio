@@ -29,7 +29,7 @@ function FloatingScrollTop() {
           transition={{ duration: 0.25, ease: "easeOut" }}
           onClick={scrollUp}
           aria-label="Scroll back to top"
-          className="fixed bottom-6 left-6 z-[70] inline-flex h-14 w-14 items-center justify-center rounded-full border border-slate-400/40 bg-white/90 text-xl text-slate-800 shadow-lg backdrop-blur-sm transition hover:scale-105 hover:border-brand-400/50 hover:text-brand-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-400 dark:border-slate-600/60 dark:bg-slate-900/90 dark:text-slate-100 dark:hover:border-brand-400/40 dark:hover:text-brand-300 max-[380px]:bottom-4 max-[380px]:left-4"
+          className="fixed bottom-[calc(1rem+env(safe-area-inset-bottom,0px))] left-[calc(0.75rem+env(safe-area-inset-left,0px))] z-[70] inline-flex h-12 w-12 items-center justify-center rounded-full border border-slate-400/40 bg-white/90 text-xl text-slate-800 shadow-lg backdrop-blur-sm transition hover:scale-105 hover:border-brand-400/50 hover:text-brand-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-400 dark:border-slate-600/60 dark:bg-slate-900/90 dark:text-slate-100 dark:hover:border-brand-400/40 dark:hover:text-brand-300 max-[480px]:bottom-[calc(0.75rem+env(safe-area-inset-bottom,0px))] max-[480px]:left-3 sm:bottom-8 sm:left-8 sm:h-14 sm:w-14"
         >
           <FiChevronUp className="h-7 w-7" aria-hidden="true" />
         </motion.button>

@@ -225,26 +225,26 @@ function Contact() {
   };
 
   return (
-    <section id="contact" className="section-wrapper pb-28">
+    <section id="contact" className="section-wrapper overflow-x-clip pb-24 max-[480px]:pb-20 sm:pb-28">
       <SectionHeading
         eyebrow="Contact"
         title="Let's talk about your next quality hire"
         subtitle="Senior QA automation, squad leadership, and enterprise test strategy—available for selective roles and advisory conversations."
       />
 
-      <p className="-mt-6 mb-10 max-w-3xl text-sm font-medium text-slate-600 dark:text-slate-400 sm:text-base">
-        <span className="rounded-full border border-slate-300/80 bg-white/60 px-3 py-1 dark:border-slate-600/60 dark:bg-slate-900/50">
+      <p className="-mt-6 mb-8 max-w-3xl px-0 text-sm font-medium sm:mb-10 sm:text-base">
+        <span className="block w-full max-w-full rounded-2xl border border-slate-300/80 bg-white/60 px-3.5 py-2.5 text-center text-xs leading-snug text-slate-600 text-balance [overflow-wrap:anywhere] dark:border-slate-600/60 dark:bg-slate-900/50 dark:text-slate-300 sm:inline-block sm:w-auto sm:max-w-xl sm:rounded-full sm:px-3 sm:py-1.5 sm:text-left sm:text-sm">
           Based in Egypt · Open to remote &amp; GCC opportunities
         </span>
       </p>
 
-      <div className="grid gap-8 lg:grid-cols-2 lg:gap-10">
+      <div className="grid min-w-0 gap-6 sm:gap-8 lg:grid-cols-2 lg:gap-10">
         <motion.div
           initial={{ opacity: 0, x: -20 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: false, amount: 0.2 }}
           transition={{ duration: 0.45, ease: "easeOut" }}
-          className="flex flex-col gap-6"
+          className="flex min-w-0 flex-col gap-5 sm:gap-6"
         >
           <button
             type="button"
@@ -255,25 +255,25 @@ function Contact() {
             Schedule a Call
           </button>
 
-          <div className="glass-card space-y-1 p-6">
+          <div className="glass-card space-y-1 p-4 sm:p-6">
             <p className="mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-brand-600 dark:text-brand-300">
               Direct channels
             </p>
             <a
               href="mailto:mohamedy.selim14@gmail.com"
-              className="flex items-center gap-3 rounded-lg py-2 text-slate-700 transition hover:bg-slate-100/80 hover:text-brand-600 dark:text-slate-300 dark:hover:bg-slate-800/50 dark:hover:text-brand-300"
+              className="flex min-w-0 items-start gap-3 rounded-lg py-2 text-slate-700 transition hover:bg-slate-100/80 hover:text-brand-600 dark:text-slate-300 dark:hover:bg-slate-800/50 dark:hover:text-brand-300 sm:items-center"
             >
-              <FiMail className="shrink-0" aria-hidden="true" />
-              mohamedy.selim14@gmail.com
+              <FiMail className="mt-0.5 shrink-0 sm:mt-0" aria-hidden="true" />
+              <span className="min-w-0 break-words [overflow-wrap:anywhere]">mohamedy.selim14@gmail.com</span>
             </a>
             <a
               href="https://linkedin.com/in/mohamed-yehia-selim"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-3 rounded-lg py-2 text-slate-700 transition hover:bg-slate-100/80 hover:text-brand-600 dark:text-slate-300 dark:hover:bg-slate-800/50 dark:hover:text-brand-300"
+              className="flex min-w-0 items-start gap-3 rounded-lg py-2 text-slate-700 transition hover:bg-slate-100/80 hover:text-brand-600 dark:text-slate-300 dark:hover:bg-slate-800/50 dark:hover:text-brand-300 sm:items-center"
             >
-              <FiLinkedin className="shrink-0" aria-hidden="true" />
-              linkedin.com/in/mohamed-yehia-selim
+              <FiLinkedin className="mt-0.5 shrink-0 sm:mt-0" aria-hidden="true" />
+              <span className="min-w-0 break-words [overflow-wrap:anywhere]">linkedin.com/in/mohamed-yehia-selim</span>
             </a>
             <a
               href="tel:+201127624482"
@@ -300,7 +300,7 @@ function Contact() {
           viewport={{ once: false, amount: 0.2 }}
           transition={{ duration: 0.45, ease: "easeOut" }}
           onSubmit={handleSubmit}
-          className="glass-card space-y-5 border-slate-700/50 p-6 sm:p-7"
+          className="glass-card min-w-0 space-y-5 border-slate-700/50 p-4 sm:p-7"
           noValidate
         >
           <div>

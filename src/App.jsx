@@ -13,15 +13,7 @@ import LoadingScreen from "./components/LoadingScreen";
 import Navbar from "./components/Navbar";
 import Projects from "./components/Projects";
 import Skills from "./components/Skills";
-import {
-  caseStudies,
-  certifications,
-  experiences,
-  heroStats,
-  navLinks,
-  skillGroups,
-  titles
-} from "./data";
+import { caseStudies, certifications, experiences, heroStats, skillGroups, titles } from "./data";
 import { CalendlyModalProvider } from "./context/CalendlyModalContext";
 
 function App() {
@@ -57,7 +49,7 @@ function App() {
       {!loading && (
         <CalendlyModalProvider>
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5 }}>
-            <Navbar navLinks={navLinks} darkMode={darkMode} onToggleTheme={toggleTheme} />
+            <Navbar darkMode={darkMode} onToggleTheme={toggleTheme} />
             <main>
               <Hero titles={titles} heroStats={heroStats} />
               <About />

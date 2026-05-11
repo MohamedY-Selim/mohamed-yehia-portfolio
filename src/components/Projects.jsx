@@ -3,7 +3,7 @@ import SectionHeading from "./SectionHeading";
 
 function Projects({ caseStudies }) {
   return (
-    <section id="projects" className="section-wrapper">
+    <section id="achievements" className="section-wrapper">
       <SectionHeading
         eyebrow="Case studies"
         title="How quality showed up on the job"

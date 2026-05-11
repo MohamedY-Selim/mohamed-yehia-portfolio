@@ -38,15 +38,15 @@ function Experience({ experiences }) {
                     Flagship role
                   </span>
                 ) : null}
-                <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-start sm:justify-between sm:gap-4">
-                  <h3 className="text-lg font-semibold leading-snug text-slate-900 dark:text-white sm:text-xl">
+                <div className="flex flex-col items-start gap-2 sm:flex-row sm:flex-wrap sm:items-start sm:justify-between sm:gap-4">
+                  <h3 className="min-w-0 w-full text-lg font-semibold leading-snug text-slate-900 dark:text-white sm:w-auto sm:max-w-[min(100%,36rem)] sm:text-xl">
                     {item.company}
                   </h3>
-                  <span className="shrink-0 rounded-full border border-brand-500/35 bg-brand-500/10 px-3 py-1 text-xs font-semibold text-brand-700 dark:border-brand-400/35 dark:text-brand-200">
+                  <span className="w-fit max-w-full shrink-0 rounded-xl border border-brand-500/35 bg-brand-500/10 px-3 py-1.5 text-left text-xs font-semibold leading-snug text-brand-700 [overflow-wrap:anywhere] dark:border-brand-400/35 dark:text-brand-200 sm:rounded-full sm:py-1 sm:leading-none">
                     {item.duration}
                   </span>
                 </div>
-                <p className="mt-3 text-base font-medium text-slate-800 dark:text-slate-100">
+                <p className="mt-4 text-base font-medium text-slate-800 dark:text-slate-100 sm:mt-3">
                   {item.role}
                   {item.subRole ? <span className="text-brand-300"> · {item.subRole}</span> : null}
                 </p>

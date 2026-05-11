@@ -1,13 +1,3 @@
-export const navLinks = [
-  { id: "home", label: "Home" },
-  { id: "about", label: "About" },
-  { id: "experience", label: "Experience" },
-  { id: "skills", label: "Skills" },
-  { id: "certifications", label: "Certifications" },
-  { id: "projects", label: "Achievements" },
-  { id: "contact", label: "Contact" }
-];
-
 export const titles = [
   "Senior QA Automation Engineer",
   "QC Squad Lead @ Giza Systems - Solutions by STC - NEOM Project",

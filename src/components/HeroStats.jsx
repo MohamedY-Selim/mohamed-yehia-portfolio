@@ -23,15 +23,15 @@ function HeroStats({ stats }) {
       variants={container}
       initial="hidden"
       animate="show"
-      className="mt-8 grid min-w-0 grid-cols-2 gap-2.5 sm:mt-10 sm:gap-4 lg:mt-10 lg:grid-cols-4"
+      className="mt-8 grid min-w-0 grid-cols-2 gap-2.5 sm:mt-10 sm:gap-4 md:max-lg:gap-3.5 lg:mt-10 lg:grid-cols-4 lg:gap-4"
       aria-label="Career highlights"
     >
       {stats.map((stat) => (
         <motion.div
           key={stat.label}
           variants={item}
-          className={`relative min-w-0 overflow-hidden rounded-2xl border px-3 py-3.5 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.06)] backdrop-blur-md border-slate-300/70 bg-white/75 dark:border-slate-700/50 dark:bg-slate-900/55 sm:px-4 sm:py-4 ${
-            stat.wide ? "col-span-2 lg:col-span-1" : ""
+          className={`relative min-w-0 overflow-hidden rounded-2xl border px-3 py-3.5 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.06)] backdrop-blur-md border-slate-300/70 bg-white/75 dark:border-slate-700/50 dark:bg-slate-900/55 sm:px-4 sm:py-4 md:max-lg:flex md:max-lg:min-h-[7rem] md:max-lg:flex-col md:max-lg:justify-center lg:min-h-0 ${
+            stat.wide ? "col-span-2 md:max-lg:col-span-1 lg:col-span-1" : ""
           }`}
         >
           <div

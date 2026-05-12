@@ -137,7 +137,7 @@ function Navbar({ darkMode, onToggleTheme }) {
     : "border-slate-300/60 bg-white/70 dark:border-slate-800/50 dark:bg-slate-950/70";
 
   const desktopBtnBase =
-    "relative rounded-lg px-3 py-2 text-sm font-medium transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-400";
+    "relative rounded-lg px-3 py-2 text-sm font-medium transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-400 md:max-lg:px-2 md:max-lg:py-1.5 md:max-lg:text-[13px] lg:px-3 lg:py-2 lg:text-sm";
 
   const mobileBtnBase =
     "w-full rounded-lg px-3 py-2.5 text-left text-sm font-medium transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-400 max-[480px]:px-2.5 max-[480px]:py-2.5";
@@ -146,16 +146,16 @@ function Navbar({ darkMode, onToggleTheme }) {
     <header
       className={`fixed left-0 right-0 top-0 z-50 border-b backdrop-blur-xl transition-[background-color,box-shadow,border-color] duration-300 ${headerClass}`}
     >
-      <nav className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3.5 max-[480px]:px-3 max-[480px]:py-3 sm:px-6 sm:py-4 lg:px-8">
+      <nav className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3.5 max-[480px]:px-3 max-[480px]:py-3 sm:px-6 sm:py-4 md:max-lg:gap-4 md:max-lg:px-7 md:max-lg:py-4 lg:px-8 lg:py-4">
         <button
           type="button"
           onClick={() => scrollToSection("home")}
-          className="border-0 bg-transparent text-sm font-semibold uppercase tracking-[0.2em] text-brand-300 hover:text-brand-200 focus-visible:text-brand-200"
+          className="min-w-0 shrink-0 border-0 bg-transparent text-left text-sm font-semibold uppercase tracking-[0.2em] text-brand-300 hover:text-brand-200 focus-visible:text-brand-200 md:max-lg:max-w-[11rem] md:max-lg:text-[11px] md:max-lg:leading-snug md:max-lg:tracking-[0.14em] md:max-lg:whitespace-nowrap lg:max-w-none lg:text-sm lg:tracking-[0.2em]"
         >
           Mohamed Yehia
         </button>
 
-        <div className="hidden items-center gap-1 md:flex">
+        <div className="hidden min-w-0 shrink items-center gap-1 md:flex md:max-lg:flex-1 md:max-lg:justify-center md:max-lg:gap-1.5 lg:flex-none lg:justify-start lg:gap-1">
           {navItems.map((item) => {
             const active = activeSection === item.id;
             return (
@@ -178,11 +178,11 @@ function Navbar({ darkMode, onToggleTheme }) {
           })}
         </div>
 
-        <div className="flex items-center gap-2">
+        <div className="flex shrink-0 items-center gap-2 md:max-lg:gap-2.5 md:max-lg:pl-1 lg:gap-2 lg:pl-0">
           <button
             type="button"
             onClick={onToggleTheme}
-            className="rounded-lg border border-slate-300 bg-white/70 p-2 text-slate-700 transition hover:border-brand-400 hover:text-brand-600 dark:border-slate-700/70 dark:bg-slate-900/40 dark:text-slate-200 dark:hover:border-brand-300 dark:hover:text-brand-300"
+            className="rounded-lg border border-slate-300 bg-white/70 p-2 text-slate-700 transition hover:border-brand-400 hover:text-brand-600 dark:border-slate-700/70 dark:bg-slate-900/40 dark:text-slate-200 dark:hover:border-brand-300 dark:hover:text-brand-300 md:max-lg:p-2.5 lg:p-2"
             aria-label="Toggle theme"
           >
             {darkMode ? <FiSun /> : <FiMoon />}

@@ -16,13 +16,13 @@ Modern, responsive personal portfolio for a Senior QA Automation Engineer and So
 
 ## SEO & social previews (Open Graph / Twitter)
 
-- Meta tags in `index.html` use the production URL: `https://mohamed-yehia-portfolio.vercel.app/`
+- Meta tags in `index.html` use the production URL: `https://yehia.digitalchoice-eg.com/`
 - **LinkedIn, Facebook, and X (Twitter)** read `og:*` and `twitter:*` tags; the share image is **`/og-image.png`** (1200×630) for best compatibility.
 - **Regenerate the PNG** after editing `public/og-image.svg`:
 
   `npm run og:image`
 
-- If you use a **custom domain**, update the **canonical** link, **`og:url`**, and all **absolute** `og:image` / `twitter:image` URLs in `index.html` to match.
+- If the **production domain** changes, update the **canonical** link, **`og:url`**, and all **absolute** `og:image` / `twitter:image` URLs in `index.html`.
 - After deploy, refresh caches: [Facebook Sharing Debugger](https://developers.facebook.com/tools/debug/), [LinkedIn Post Inspector](https://www.linkedin.com/post-inspector/), [Twitter Card Validator](https://cards-dev.twitter.com/validator) (or X equivalent).
 
 ## Contact Form (EmailJS)

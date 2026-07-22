@@ -1,19 +1,34 @@
 export const titles = [
-  "Senior QA Automation Engineer",
-  "QC Squad Lead @ Giza Systems - Solutions by STC - NEOM Project",
+  "Sofware Quality Control Team Lead",
   "Software Quality Control Team Lead @ iGenTech",
-  "ISTQB® 8x Certified Tester"
+  "QC Squad Lead @ Giza Systems - Solutions by STC - NEOM Project",
+  "ISTQB® 9x Certified Tester"
 ];
 
 /** Hero metrics — values align with CV / portfolio claims */
 export const heroStats = [
   { value: "6+", label: "Years Experience" },
-  { value: "8x", label: "ISTQB Certified" },
+  { value: "9x", label: "ISTQB Certified" },
   { value: "50+", label: "Projects Delivered" },
   { value: "Fintech · Retail · Enterprise", label: "Domain Depth", wide: true }
 ];
 
 export const experiences = [
+    {
+    company: "iGenTech",
+    role: "QC Team Lead",
+    subRole: "Senior QA Engineer",
+    duration: "Jul 2024 – Present",
+    location: "Full-Time · Hybrid · Giza, Egypt",
+    flagship: true,
+    highlights: [
+      "Stood up QA and automation from zero across a software-house portfolio—fintech, enterprise web, and operations dashboards.",
+      "Defined test strategy, workflows, and engineering standards that teams could repeat across heterogeneous products.",
+      "Delivered scalable frameworks with Selenium, Appium, and Shaft Engine to match mobile, web, and integration needs.",
+      "Drove API and performance discipline with Postman and JMeter—surfacing scalability risks before go-live.",
+      "Mentored QA engineers and embedded QA in CI/CD + Agile delivery; improved coverage and cut production defects by ~25%."
+    ]
+  },
   {
     company: "Giza Systems – Solutions by STC – NEOM Project",
     role: "Senior Software QC Automation Engineer",
@@ -27,21 +42,6 @@ export const experiences = [
       "Hardened API contracts with Postman-backed validation across microservices, protecting data integrity at integration boundaries.",
       "Runs structured cycles in Jira + Zephyr Scale and cross-browser coverage via BrowserStack—lifting visibility for leadership and delivery.",
       "Partners with Agile squads to reduce production defects by ~30% through earlier risk focus and measurable quality metrics."
-    ]
-  },
-  {
-    company: "iGenTech",
-    role: "QC Team Lead",
-    subRole: "Senior QA Engineer",
-    duration: "Jul 2024 – Sep 2025",
-    location: "Full-Time · Hybrid · Giza, Egypt",
-    flagship: true,
-    highlights: [
-      "Stood up QA and automation from zero across a software-house portfolio—fintech, enterprise web, and operations dashboards.",
-      "Defined test strategy, workflows, and engineering standards that teams could repeat across heterogeneous products.",
-      "Delivered scalable frameworks with Selenium, Appium, and Shaft Engine to match mobile, web, and integration needs.",
-      "Drove API and performance discipline with Postman and JMeter—surfacing scalability risks before go-live.",
-      "Mentored QA engineers and embedded QA in CI/CD + Agile delivery; improved coverage and cut production defects by ~25%."
     ]
   },
   {
@@ -157,7 +157,8 @@ export const certifications = [
   { code: "CTAL-ATT", name: "Certified Tester Advanced Level - Agile Technical Tester" },
   { code: "CTAL-TA", name: "Certified Tester Advanced Level - Test Analyst" },
   { code: "CTAL-TTA", name: "Certified Tester Advanced Level - Technical Test Analyst" },
-  { code: "CT-AI", name: "Certified Tester - AI Testing" }
+  { code: "CT-AI", name: "Certified Tester - AI Testing" },
+  {code: "CT-GENAI", name: "Certified Tester - Testing with Generative AI"}
 ];
 
 /** Enterprise-style case studies derived from CV highlights */

@@ -7,7 +7,7 @@ function Certifications({ certifications }) {
       <SectionHeading
         eyebrow="Certifications"
         title="ISTQB® advanced depth"
-        subtitle="Seven credentials spanning foundation, agile, mobile, and advanced technical test engineering—signals seriousness to hiring managers."
+        subtitle="Nine credentials spanning foundation, agile, mobile, automation, AI, and advanced technical test engineering—signals seriousness to hiring managers."
       />
       <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
         {certifications.map((cert, index) => (

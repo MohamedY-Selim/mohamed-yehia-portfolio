@@ -83,7 +83,7 @@ function Hero({ titles, heroStats }) {
                 <FiCalendar className="shrink-0 transition group-hover:scale-110" aria-hidden="true" />
                 Schedule a Call
               </button>
-              <a href="/Mohamed Yehia Senior QA CV.pdf" className={ctaPrimary}>
+              <a href="/Mohamed Yehia CV.pdf" className={ctaPrimary}>
                 <FiDownload className="shrink-0 transition group-hover:scale-110" aria-hidden="true" />
                 Download CV
               </a>

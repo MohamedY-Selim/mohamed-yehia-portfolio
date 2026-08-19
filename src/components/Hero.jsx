@@ -41,7 +41,7 @@ function Hero({ titles, heroStats }) {
               transition={{ duration: 0.55, ease }}
               className="mb-4 text-xs font-semibold uppercase tracking-[0.28em] text-brand-300"
             >
-              Senior QA Automation / SDET
+              Sofware Quality Control Team Lead
             </motion.p>
             <motion.h1
               initial={{ opacity: 0, y: 20 }}

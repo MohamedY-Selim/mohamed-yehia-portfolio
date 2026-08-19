@@ -119,7 +119,7 @@ function Hero({ titles, heroStats }) {
               />
               <div className="relative overflow-hidden rounded-2xl border border-slate-700/60 bg-slate-900/80 p-1.5 shadow-glow dark:border-slate-600/50">
                 <img
-                  src="/mohamed-photo.jpg"
+                  src="/mohamed_photo.jpg"
                   alt="Mohamed Yehia portrait"
                   className="aspect-[4/5] w-full rounded-xl object-cover object-center sm:h-[min(32rem,70vh)] sm:aspect-auto lg:h-[min(36rem,78vh)]"
                   width={480}

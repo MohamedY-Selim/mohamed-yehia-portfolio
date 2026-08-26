@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import emailjs from "@emailjs/browser";
 import { FiCalendar, FiLinkedin, FiMail, FiPhone, FiSend } from "react-icons/fi";
 import { FaWhatsapp } from "react-icons/fa6";
@@ -36,8 +36,6 @@ function Contact() {
   const emailJsTemplateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
   const emailJsPublicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
 
-  const honeypotRef = useRef(null);
-
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -61,22 +59,16 @@ function Contact() {
   const [pageLoadTime] = useState(Date.now());
   const [lastSubmitTime, setLastSubmitTime] = useState(0);
 
-  // Bots may fill hidden fields; readonly blocks browser autofill until after load.
   useEffect(() => {
-    const timer = window.setTimeout(() => {
-      honeypotRef.current?.removeAttribute("readonly");
-    }, 1000);
-
-    return () => window.clearTimeout(timer);
-  }, []);
+    if (emailJsPublicKey) {
+      emailjs.init({ publicKey: emailJsPublicKey });
+    }
+  }, [emailJsPublicKey]);
 
   const resetForm = () => {
     setFormData({ name: "", email: "", message: "" });
     setTouched({ name: false, email: false, message: false });
     setFieldErrors({ name: "", email: "", message: "" });
-    if (honeypotRef.current) {
-      honeypotRef.current.value = "";
-    }
   };
 
   // Validate a single field and return error message ("" if valid)
@@ -165,12 +157,6 @@ function Contact() {
       return;
     }
 
-    // Anti-spam: honeypot check (real users won't fill hidden field)
-    const honeypotValue = honeypotRef.current?.value.trim() ?? "";
-    if (honeypotValue) {
-      return;
-    }
-
     // Anti-spam: too fast submission (bot)
     const timeSinceLoad = Date.now() - pageLoadTime;
     if (timeSinceLoad < MIN_SUBMIT_TIME_MS) {
@@ -209,8 +195,7 @@ function Contact() {
           from_email: formData.email.trim(),
           message: formData.message.trim(),
           to_name: "Mohamed Yehia"
-        },
-        emailJsPublicKey
+        }
       );
 
       setLastSubmitTime(Date.now());
@@ -221,10 +206,13 @@ function Contact() {
         error: ""
       });
     } catch (error) {
+      const configMissing = !emailJsServiceId || !emailJsTemplateId || !emailJsPublicKey;
       setSubmitState({
         loading: false,
         success: "",
-        error: "Unable to send right now. Please verify EmailJS keys and try again."
+        error: configMissing
+          ? "Contact form is not configured yet. Please email me directly using the links on the left."
+          : "Unable to send right now. Please try again or email me directly."
       });
     }
   };
@@ -325,20 +313,6 @@ function Contact() {
               Brief context on role, stack, and timeline—I typically reply within one business day.
             </p>
           </div>
-          {/* Honeypot field - uncontrolled so autofill cannot pollute submit state */}
-          <input
-            ref={honeypotRef}
-            type="text"
-            name="b_confirm_code"
-            defaultValue=""
-            readOnly
-            tabIndex={-1}
-            autoComplete="off"
-            data-lpignore="true"
-            data-1p-ignore="true"
-            aria-hidden="true"
-            className="pointer-events-none absolute -left-[9999px] h-0 w-0 opacity-0"
-          />
 
           <div>
             <input

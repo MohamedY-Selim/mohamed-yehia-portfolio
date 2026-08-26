@@ -1,4 +1,4 @@
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, motion, useAnimationControls, useReducedMotion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import emailjs from "@emailjs/browser";
 import { FiCalendar, FiLinkedin, FiMail, FiPhone, FiSend } from "react-icons/fi";
@@ -59,7 +59,10 @@ function Contact() {
   });
   const [pageLoadTime] = useState(Date.now());
   const [lastSubmitTime, setLastSubmitTime] = useState(0);
+  const [isClearing, setIsClearing] = useState(false);
   const successTimerRef = useRef(null);
+  const formFieldsControls = useAnimationControls();
+  const prefersReducedMotion = useReducedMotion();
 
   useEffect(() => {
     if (emailJsPublicKey) {
@@ -89,6 +92,31 @@ function Contact() {
     setFormData({ name: "", email: "", message: "" });
     setTouched({ name: false, email: false, message: false });
     setFieldErrors({ name: "", email: "", message: "" });
+  };
+
+  const clearFormWithAnimation = async () => {
+    setIsClearing(true);
+
+    if (!prefersReducedMotion) {
+      await formFieldsControls.start({
+        opacity: 0,
+        y: -10,
+        scale: 0.985,
+        filter: "blur(3px)",
+        transition: { duration: 0.28, ease: "easeIn" }
+      });
+    }
+
+    resetForm();
+    formFieldsControls.set({ opacity: 0, y: 10, scale: 0.985, filter: "blur(3px)" });
+    await formFieldsControls.start({
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      filter: "blur(0px)",
+      transition: { duration: prefersReducedMotion ? 0 : 0.38, ease: "easeOut" }
+    });
+    setIsClearing(false);
   };
 
   // Validate a single field and return error message ("" if valid)
@@ -219,12 +247,12 @@ function Contact() {
       );
 
       setLastSubmitTime(Date.now());
-      resetForm();
       setSubmitState({
         loading: false,
         success: "Message sent successfully. Thank you!",
         error: ""
       });
+      await clearFormWithAnimation();
     } catch (error) {
       const configMissing = !emailJsServiceId || !emailJsTemplateId || !emailJsPublicKey;
       setSubmitState({
@@ -334,61 +362,66 @@ function Contact() {
             </p>
           </div>
 
-          <div>
-            <input
-              type="text"
-              name="name"
-              value={formData.name}
-              onChange={handleChange}
-              onBlur={handleBlur}
-              placeholder="Your Name"
-              maxLength={VALIDATION_RULES.name.maxLength}
-              required
-              className={inputClass("name")}
-            />
-            {touched.name && fieldErrors.name && (
-              <p className="mt-1 text-xs text-rose-400">{fieldErrors.name}</p>
-            )}
-          </div>
-
-          <div>
-            <input
-              type="email"
-              name="email"
-              value={formData.email}
-              onChange={handleChange}
-              onBlur={handleBlur}
-              placeholder="Your Email"
-              maxLength={VALIDATION_RULES.email.maxLength}
-              required
-              className={inputClass("email")}
-            />
-            {touched.email && fieldErrors.email && (
-              <p className="mt-1 text-xs text-rose-400">{fieldErrors.email}</p>
-            )}
-          </div>
-
-          <div>
-            <textarea
-              rows="5"
-              name="message"
-              value={formData.message}
-              onChange={handleChange}
-              onBlur={handleBlur}
-              placeholder="Your Message"
-              maxLength={VALIDATION_RULES.message.maxLength}
-              required
-              className={inputClass("message")}
-            />
-            <div className="mt-1 flex justify-between text-xs">
-              <span className="text-rose-400">
-                {touched.message && fieldErrors.message ? fieldErrors.message : ""}
-              </span>
-              <span className="text-slate-400">
-                {formData.message.length}/{VALIDATION_RULES.message.maxLength}
-              </span>
+          <motion.div animate={formFieldsControls} className="space-y-5">
+            <div>
+              <input
+                type="text"
+                name="name"
+                value={formData.name}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                placeholder="Your Name"
+                maxLength={VALIDATION_RULES.name.maxLength}
+                disabled={isClearing}
+                required
+                className={inputClass("name")}
+              />
+              {touched.name && fieldErrors.name && (
+                <p className="mt-1 text-xs text-rose-400">{fieldErrors.name}</p>
+              )}
             </div>
-          </div>
+
+            <div>
+              <input
+                type="email"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                placeholder="Your Email"
+                maxLength={VALIDATION_RULES.email.maxLength}
+                disabled={isClearing}
+                required
+                className={inputClass("email")}
+              />
+              {touched.email && fieldErrors.email && (
+                <p className="mt-1 text-xs text-rose-400">{fieldErrors.email}</p>
+              )}
+            </div>
+
+            <div>
+              <textarea
+                rows="5"
+                name="message"
+                value={formData.message}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                placeholder="Your Message"
+                maxLength={VALIDATION_RULES.message.maxLength}
+                disabled={isClearing}
+                required
+                className={inputClass("message")}
+              />
+              <div className="mt-1 flex justify-between text-xs">
+                <span className="text-rose-400">
+                  {touched.message && fieldErrors.message ? fieldErrors.message : ""}
+                </span>
+                <span className="text-slate-400">
+                  {formData.message.length}/{VALIDATION_RULES.message.maxLength}
+                </span>
+              </div>
+            </div>
+          </motion.div>
 
           <AnimatePresence>
             {submitState.success ? (
@@ -412,7 +445,7 @@ function Contact() {
 
           <button
             type="submit"
-            disabled={submitState.loading}
+            disabled={submitState.loading || isClearing}
             className="group flex w-full items-center justify-center gap-2 rounded-xl bg-brand-600 px-5 py-3.5 font-semibold text-white shadow-glow transition hover:-translate-y-0.5 hover:bg-brand-500 hover:shadow-[0_0_28px_-6px_rgba(41,136,255,0.45)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-400 disabled:translate-y-0 disabled:cursor-not-allowed disabled:opacity-60 disabled:shadow-none"
           >
             {submitState.loading ? (

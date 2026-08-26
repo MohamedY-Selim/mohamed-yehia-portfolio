@@ -1,5 +1,5 @@
-import { motion } from "framer-motion";
-import { useEffect, useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
 import emailjs from "@emailjs/browser";
 import { FiCalendar, FiLinkedin, FiMail, FiPhone, FiSend } from "react-icons/fi";
 import { FaWhatsapp } from "react-icons/fa6";
@@ -29,6 +29,7 @@ const VALIDATION_RULES = {
 const MIN_SUBMIT_TIME_MS = 3000;
 // Anti-spam: cooldown between submissions
 const SUBMIT_COOLDOWN_MS = 30000;
+const SUCCESS_MESSAGE_MS = 10000;
 
 function Contact() {
   const { openCalendly } = useCalendlyModal();
@@ -58,12 +59,31 @@ function Contact() {
   });
   const [pageLoadTime] = useState(Date.now());
   const [lastSubmitTime, setLastSubmitTime] = useState(0);
+  const successTimerRef = useRef(null);
 
   useEffect(() => {
     if (emailJsPublicKey) {
       emailjs.init({ publicKey: emailJsPublicKey });
     }
   }, [emailJsPublicKey]);
+
+  useEffect(() => {
+    if (!submitState.success) {
+      return undefined;
+    }
+
+    successTimerRef.current = window.setTimeout(() => {
+      setSubmitState((prev) => ({ ...prev, success: "" }));
+      successTimerRef.current = null;
+    }, SUCCESS_MESSAGE_MS);
+
+    return () => {
+      if (successTimerRef.current != null) {
+        window.clearTimeout(successTimerRef.current);
+        successTimerRef.current = null;
+      }
+    };
+  }, [submitState.success]);
 
   const resetForm = () => {
     setFormData({ name: "", email: "", message: "" });
@@ -370,9 +390,22 @@ function Contact() {
             </div>
           </div>
 
-          {submitState.success ? (
-            <p className="text-sm text-emerald-400">{submitState.success}</p>
-          ) : null}
+          <AnimatePresence>
+            {submitState.success ? (
+              <motion.p
+                key="contact-success"
+                role="status"
+                aria-live="polite"
+                initial={{ opacity: 0, y: 6 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -4 }}
+                transition={{ duration: 0.35, ease: "easeOut" }}
+                className="text-sm text-emerald-400"
+              >
+                {submitState.success}
+              </motion.p>
+            ) : null}
+          </AnimatePresence>
           {submitState.error ? (
             <p className="text-sm text-rose-400">{submitState.error}</p>
           ) : null}

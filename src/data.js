@@ -2,13 +2,13 @@ export const titles = [
   "Sofware Quality Control Team Lead",
   "Software Quality Control Team Lead @ iGenTech",
   "QC Squad Lead @ Giza Systems - Solutions by STC - NEOM Project",
-  "ISTQB® 9x Certified Tester"
+  "ISTQB® 10x Certified Tester"
 ];
 
 /** Hero metrics — values align with CV / portfolio claims */
 export const heroStats = [
   { value: "6+", label: "Years Experience" },
-  { value: "9x", label: "ISTQB Certified" },
+  { value: "10x", label: "ISTQB Certified" },
   { value: "50+", label: "Projects Delivered" },
   { value: "Fintech · Retail · Enterprise", label: "Domain Depth", wide: true }
 ];

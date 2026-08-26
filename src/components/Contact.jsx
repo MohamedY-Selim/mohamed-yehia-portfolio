@@ -133,6 +133,19 @@ function Contact() {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
+    // Clear any previous submit feedback before re-evaluating
+    setSubmitState({ loading: false, success: "", error: "" });
+
+    // Validate first so real users always see field errors instead of a fake success
+    if (!validateAll()) {
+      setSubmitState({
+        loading: false,
+        success: "",
+        error: "Please fix the errors above before sending."
+      });
+      return;
+    }
+
     // Anti-spam: honeypot check (real users won't fill hidden field)
     if (formData.website) {
       setSubmitState({
@@ -162,16 +175,6 @@ function Contact() {
         loading: false,
         success: "",
         error: `Please wait ${waitSeconds} seconds before sending another message.`
-      });
-      return;
-    }
-
-    // Run full validation
-    if (!validateAll()) {
-      setSubmitState({
-        loading: false,
-        success: "",
-        error: "Please fix the errors above before sending."
       });
       return;
     }
@@ -312,13 +315,17 @@ function Contact() {
           {/* Honeypot field - hidden from users, traps bots */}
           <input
             type="text"
-            name="website"
+            name="company_url"
             value={formData.website}
-            onChange={handleChange}
+            onChange={(event) =>
+              setFormData((prev) => ({ ...prev, website: event.target.value }))
+            }
             tabIndex="-1"
             autoComplete="off"
+            data-lpignore="true"
+            data-1p-ignore="true"
             aria-hidden="true"
-            style={{ position: "absolute", left: "-9999px", opacity: 0, pointerEvents: "none" }}
+            style={{ position: "absolute", left: "-9999px", opacity: 0, pointerEvents: "none", height: 0, width: 0 }}
           />
 
           <div>

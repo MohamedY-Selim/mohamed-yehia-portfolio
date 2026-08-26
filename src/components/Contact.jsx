@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import emailjs from "@emailjs/browser";
 import { FiCalendar, FiLinkedin, FiMail, FiPhone, FiSend } from "react-icons/fi";
 import { FaWhatsapp } from "react-icons/fa6";
@@ -36,11 +36,12 @@ function Contact() {
   const emailJsTemplateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
   const emailJsPublicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
 
+  const honeypotRef = useRef(null);
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",
-    message: "",
-    website: "" // honeypot field - hidden from real users, bots fill it
+    message: ""
   });
   const [fieldErrors, setFieldErrors] = useState({
     name: "",
@@ -59,6 +60,24 @@ function Contact() {
   });
   const [pageLoadTime] = useState(Date.now());
   const [lastSubmitTime, setLastSubmitTime] = useState(0);
+
+  // Bots may fill hidden fields; readonly blocks browser autofill until after load.
+  useEffect(() => {
+    const timer = window.setTimeout(() => {
+      honeypotRef.current?.removeAttribute("readonly");
+    }, 1000);
+
+    return () => window.clearTimeout(timer);
+  }, []);
+
+  const resetForm = () => {
+    setFormData({ name: "", email: "", message: "" });
+    setTouched({ name: false, email: false, message: false });
+    setFieldErrors({ name: "", email: "", message: "" });
+    if (honeypotRef.current) {
+      honeypotRef.current.value = "";
+    }
+  };
 
   // Validate a single field and return error message ("" if valid)
   const validateField = (name, value) => {
@@ -147,12 +166,8 @@ function Contact() {
     }
 
     // Anti-spam: honeypot check (real users won't fill hidden field)
-    if (formData.website) {
-      setSubmitState({
-        loading: false,
-        success: "Message sent successfully. Thank you!", // fake success for bots
-        error: ""
-      });
+    const honeypotValue = honeypotRef.current?.value.trim() ?? "";
+    if (honeypotValue) {
       return;
     }
 
@@ -199,14 +214,12 @@ function Contact() {
       );
 
       setLastSubmitTime(Date.now());
+      resetForm();
       setSubmitState({
         loading: false,
         success: "Message sent successfully. Thank you!",
         error: ""
       });
-      setFormData({ name: "", email: "", message: "", website: "" });
-      setTouched({ name: false, email: false, message: false });
-      setFieldErrors({ name: "", email: "", message: "" });
     } catch (error) {
       setSubmitState({
         loading: false,
@@ -312,20 +325,19 @@ function Contact() {
               Brief context on role, stack, and timeline—I typically reply within one business day.
             </p>
           </div>
-          {/* Honeypot field - hidden from users, traps bots */}
+          {/* Honeypot field - uncontrolled so autofill cannot pollute submit state */}
           <input
+            ref={honeypotRef}
             type="text"
-            name="company_url"
-            value={formData.website}
-            onChange={(event) =>
-              setFormData((prev) => ({ ...prev, website: event.target.value }))
-            }
-            tabIndex="-1"
+            name="b_confirm_code"
+            defaultValue=""
+            readOnly
+            tabIndex={-1}
             autoComplete="off"
             data-lpignore="true"
             data-1p-ignore="true"
             aria-hidden="true"
-            style={{ position: "absolute", left: "-9999px", opacity: 0, pointerEvents: "none", height: 0, width: 0 }}
+            className="pointer-events-none absolute -left-[9999px] h-0 w-0 opacity-0"
           />
 
           <div>

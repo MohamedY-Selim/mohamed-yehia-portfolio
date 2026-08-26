@@ -158,7 +158,8 @@ export const certifications = [
   { code: "CTAL-TA", name: "Certified Tester Advanced Level - Test Analyst" },
   { code: "CTAL-TTA", name: "Certified Tester Advanced Level - Technical Test Analyst" },
   { code: "CT-AI", name: "Certified Tester - AI Testing" },
-  {code: "CT-GENAI", name: "Certified Tester - Testing with Generative AI"}
+  {code: "CT-GENAI", name: "Certified Tester - Testing with Generative AI"},
+  {code: "CTAL-TM", name: "Certified Tester Advanced Level - Test Management"}
 ];
 
 /** Enterprise-style case studies derived from CV highlights */

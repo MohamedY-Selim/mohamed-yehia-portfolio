@@ -33,7 +33,7 @@ export const experiences = [
     company: "Giza Systems – Solutions by STC – NEOM Project",
     role: "Senior Software QC Automation Engineer",
     subRole: "Acting Squad Lead",
-    duration: "Sep 2025 – Present",
+    duration: "Sep 2025 – Oct 2026",
     location: "Full-Time · Hybrid · Cairo, Egypt",
     flagship: true,
     highlights: [

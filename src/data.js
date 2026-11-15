@@ -47,7 +47,7 @@ export const experiences = [
   {
     company: "Ahram Canadian University",
     role: "Teaching Assistant",
-    duration: "Aug 2024 – Present",
+    duration: "Aug 2024 – Sep 2026",
     location: "Part-Time · Onsite · Giza, Egypt",
     highlights: [
       "Delivers software testing, QA, and software engineering sessions with a practitioner’s lens.",
